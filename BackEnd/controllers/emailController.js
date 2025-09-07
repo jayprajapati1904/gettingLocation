@@ -13,8 +13,8 @@ export const sendEmail = async (req, res) => {
     // Configure transporter (using Gmail example)
     let transporter = nodemailer.createTransport({
       host: "smtp.ethereal.email",
-      port: 465,
-      secure: true, // true for 465, false for other ports
+      port: 587,
+      secure: false, // true for 465, false for other ports
       auth: {
         user: "jay1904prajapati@gmail.com",
         pass: "oqon rfpl clbn byur", // Use Gmail App Password
