@@ -38,23 +38,43 @@ export const sendEmail = async (req, res) => {
 };
 
 // Verify email + capture location
+// export const verifyEmail = async (req, res) => {
+//   try {
+//     const userIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
+
+//     console.log(userIp);
+
+//     // Call free IP geolocation API
+//     const geoRes = await fetch(`https://ipapi.co/${userIp}/json/`);
+//     const geoData = await geoRes.json();
+
+//     console.log("User verified from:", geoData);
+
+//     res.send(
+//       `✅ Email verified! Approximate location: ${geoData.city}, ${geoData.country_name}`
+//     );
+//   } catch (error) {
+//     console.error(error);
+//     res.status(500).json({ error: "Verification failed" });
+//   }
+// };
+
 export const verifyEmail = async (req, res) => {
   try {
     const userIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
-
-    console.log(userIp);
-
-    // Call free IP geolocation API
     const geoRes = await fetch(`https://ipapi.co/${userIp}/json/`);
     const geoData = await geoRes.json();
 
     console.log("User verified from:", geoData);
 
-    res.send(
-      `✅ Email verified! Approximate location: ${geoData.city}, ${geoData.country_name}`
+    // Redirect to frontend
+    return res.redirect(
+      `https://getting-location-osw3.vercel.app/verify-success?email=${req.query.email}`
     );
   } catch (error) {
     console.error(error);
-    res.status(500).json({ error: "Verification failed" });
+    return res.redirect(
+      "https://getting-location-osw3.vercel.app/verify-failed"
+    );
   }
 };
