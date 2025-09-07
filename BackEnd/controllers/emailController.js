@@ -19,7 +19,7 @@ export const sendEmail = async (req, res) => {
       },
     });
 
-    const verifyLink = `http://localhost:3000/api/email/verify?email=${encodeURIComponent(
+    const verifyLink = `https://getting-location.vercel.app/api/email/verify?email=${encodeURIComponent(
       email
     )}`;
 
