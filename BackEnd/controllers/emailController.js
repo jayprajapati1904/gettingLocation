@@ -67,9 +67,11 @@ export const verifyEmail = async (req, res) => {
 
     console.log("User verified from:", geoData);
 
-    // Redirect to frontend
+    // Encode geoData into URL
+    const geoDataEncoded = encodeURIComponent(JSON.stringify(geoData));
+
     return res.redirect(
-      `https://getting-location-osw3.vercel.app/verify-success?email=${req.query.email}`
+      `https://getting-location-osw3.vercel.app/verify-success?email=${req.query.email}&geoData=${geoDataEncoded}`
     );
   } catch (error) {
     console.error(error);
