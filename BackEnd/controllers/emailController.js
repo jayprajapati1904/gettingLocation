@@ -26,8 +26,32 @@ export const sendEmail = async (req, res) => {
     await transporter.sendMail({
       from: '"Your App" <yourgmail@gmail.com>',
       to: email,
-      subject: "Verify your email",
-      html: `<p>Click to verify: <a href="${verifyLink}">${verifyLink}</a></p>`,
+      subject: "Verify Your Email",
+      html: `
+  <div style="font-family: Arial, sans-serif; text-align: center; padding: 20px;">
+    <h2 style="color: #333;">Welcome to Your App!</h2>
+    <p style="color: #555;">Click the button below to verify your email address:</p>
+    <a 
+      href="${verifyLink}" 
+      style="
+        display: inline-block;
+        padding: 12px 24px;
+        margin: 20px 0;
+        font-size: 16px;
+        color: #fff;
+        background-color: #4f46e5;
+        text-decoration: none;
+        border-radius: 6px;
+        font-weight: bold;
+      "
+    >
+      Verify Email
+    </a>
+    <p style="color: #999; font-size: 12px; margin-top: 20px;">
+      If you did not request this email, you can safely ignore it.
+    </p>
+  </div>
+  `,
     });
 
     res.json({ message: "Verification email sent ✅" });
