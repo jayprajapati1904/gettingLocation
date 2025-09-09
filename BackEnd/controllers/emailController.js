@@ -88,7 +88,7 @@ export const verifyEmail = async (req, res) => {
     const userIp = req.headers["x-forwarded-for"] || req.socket.remoteAddress;
 
     // Call ipapi with IP
-    const geoRes = await fetch(`https://ipapi.co/${userIp}/json/`);
+    const geoRes = await fetch(`https://ipwho.is/${userIp}`);
     const geoData = await geoRes.json();
 
     console.log("User verified from:", geoData);
